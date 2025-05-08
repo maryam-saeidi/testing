@@ -1,8 +1,8 @@
-name: Label PR by Approved Authors
+name: Add Team:obs-ux-management label to PRs
 
 on:
   pull_request_target:
-    types: [opened, reopened, synchronize]
+    types: [opened]
 
 jobs:
   label-obs-ux-management-team:
