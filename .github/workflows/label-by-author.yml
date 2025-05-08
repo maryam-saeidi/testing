@@ -5,7 +5,7 @@ on:
     types: [opened, reopened, synchronize]
 
 jobs:
-  label-author:
+  label-obs-ux-management-team:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -16,19 +16,28 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const approvedUsers = ["maryam-saeidi"]; // GitHub usernames
-            const label = "trusted-author";
+            const obsUxManagementTeam = [
+              "maryam-saeidi",
+              "jasonrhodes",
+              "kdelemme",
+              "mgiota",
+              "shahzad31",
+              "fkanout",
+              "dominiqueclarke",
+              "justinkambic",
+              "cesco-f",
+              "benakansara",
+              "baileycash-elastic"
+            ]; // GitHub usernames
+            const label = "Team:obs-ux-management";
 
             const author = context.payload.pull_request.user.login;
 
-            if (approvedUsers.includes(author)) {
+            if (obsUxManagementTeam.includes(author)) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.payload.pull_request.number,
                 labels: [label],
               });
-              console.log(`Label "${label}" added for approved author "${author}".`);
-            } else {
-              console.log(`Author "${author}" is not in the approved list. No label added.`);
             }
