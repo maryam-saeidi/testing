@@ -1,0 +1,34 @@
+name: Label PR by Approved Authors
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  label-author:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Label if author is in the approved list
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const approvedUsers = ["maryam-saeidi"]; // GitHub usernames
+            const label = "trusted-author";
+
+            const author = context.payload.pull_request.user.login;
+
+            if (approvedUsers.includes(author)) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                labels: [label],
+              });
+              console.log(`Label "${label}" added for approved author "${author}".`);
+            } else {
+              console.log(`Author "${author}" is not in the approved list. No label added.`);
+            }
