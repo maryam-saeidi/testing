@@ -1,0 +1,23 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "Just testing stuff!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryam-saeidi/testing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maryam-saeidi/testing/issues"
+  },
+  "homepage": "https://github.com/maryam-saeidi/testing#readme",
+  "dependencies": {
+    "zod": "^4.0.17"
+  }
+}
